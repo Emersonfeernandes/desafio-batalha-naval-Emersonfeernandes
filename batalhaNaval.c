@@ -5,16 +5,16 @@
 // Siga os comentários para implementar cada parte do desafio.
 char *navio(int index1, int index2){
     char *tabuleiro[10][10] ={
-        {"  N  ", "  A  ", "  V  ", "  I  ", "  O  ", " Mar ", "  O  ", " Mar ", " Mar ", " Mar "},
-        {"  A  ", " Mar ", " Mar ", " Mar ", "  I  ", "  I  ", " Mar ", " Mar ", "  @  ", " Mar "},
-        {"  V  ", " Mar ", " Mar ", " Mar ", "  V  ", " Mar ", " Mar ", "  @  ", "  @  ", "  @  "},
-        {"  I  ", " Mar ", " Mar ", " Mar ", "  A  ", " Mar ", " Mar ", " Mar ", "  @  ", " Mar "},
-        {"  O  ", " Mar ", " Mar ", "  A  ", "  N  ", "  #  ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", "  N  ", " Mar ", "  #  ", "  #  ", "  #  ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", "  A  ", " Mar ", " Mar ", "  #  ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", "  V  ", " Mar ", " Mar ", "  #  ", " Mar ", "  #  ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", "  I  ", " Mar ", " Mar ", " Mar ", "  #  ", "  #  ", "  #  ", " Mar "},
-        {" Mar ", " Mar ", "  O  ", " Mar ", " Mar ", "  #  ", "  #  ", "  #  ", "  #  ", "  #  "}  
+        {"  N  ", "  A  ", "  V  ", "  I  ", "  O  ", "  x  ", "  O  ", "  x  ", "  x  ", "  x  "},
+        {"  A  ", "  x  ", "  x  ", "  x  ", "  I  ", "  I  ", "  x  ", "  x  ", "  @  ", "  x  "},
+        {"  V  ", "  x  ", "  x  ", "  x  ", "  V  ", "  x  ", "  x  ", "  @  ", "  @  ", "  @  "},
+        {"  I  ", "  x  ", "  x  ", "  x  ", "  A  ", "  x  ", "  x  ", "  x  ", "  @  ", "  x  "},
+        {"  O  ", "  x  ", "  x  ", "  A  ", "  N  ", "  #  ", "  x  ", "  x  ", "  x  ", "  x  "},
+        {"  x  ", "  x  ", "  N  ", "  x  ", "  #  ", "  #  ", "  #  ", "  x  ", "  x  ", "  x  "},
+        {"  x  ", "  x  ", "  A  ", "  x  ", "  x  ", "  #  ", "  x  ", "  x  ", "  x  ", "  x  "},
+        {"  x  ", "  x  ", "  V  ", "  x  ", "  x  ", "  #  ", "  x  ", "  #  ", "  x  ", "  x  "},
+        {"  x  ", "  x  ", "  I  ", "  x  ", "  x  ", "  x  ", "  #  ", "  #  ", "  #  ", "  x  "},
+        {"  x  ", "  x  ", "  O  ", "  x  ", "  x  ", "  #  ", "  #  ", "  #  ", "  #  ", "  #  "}  
     };
 
     return tabuleiro[index1][index2];
@@ -106,18 +106,7 @@ void player(char *tabuleiro[10][10], int index, char letra){
 }
 
 int main() {
-    char *tabuleiro[10][10] ={
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "},
-        {" Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar ", " Mar "}  
-    };
+    char *tabuleiro[10][10];
     int index;
     char letra;
     // Nível Novato - Posicionamento dos Navios
@@ -125,19 +114,29 @@ int main() {
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
     
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            tabuleiro[i][j] = " |?| ";
+        }
+        
+    }
+    
     funcTabuleiro(tabuleiro);
     do
     {
-        printf("\n\nDigite um número de 0 a 9 para lonha e um letra e A a J para coluna\n");
+        printf("\n\nDigite um número de 0 a 9 para linha\numa letra de A a J para coluna\n0S para sair\n");
         scanf("%d %c", &index, &letra);
 
-        if (letra != 's' && letra != 'S'){
-            player(tabuleiro, index, letra);
-        }else {
+        if (letra == 's' || letra == 'S'){
             break;
         }
+            
+        player(tabuleiro, index, letra);
+        
     
-    }while (letra != 's' && letra != 'S');
+    }while (1);
     
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
